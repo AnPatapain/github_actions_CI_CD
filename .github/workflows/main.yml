@@ -1,3 +1,6 @@
+# Automate the workflows after pushing code on github
+# The workflow using here is: CI/CD that consists: Build -> Test -> Deploy
+
 name: Java CI CD using docker swarm, vagrant, ansible
 
 on:
@@ -6,7 +9,7 @@ on:
   pull_request:
     branches: ["master"]
 jobs: 
-  build:
+  build_test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -18,7 +21,6 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
-    #Use cache to speedup the build job
     - name: Cache the Maven packages to speed up build
       uses: actions/cache@v1
       with:
